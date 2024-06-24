@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrashCollectionAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04c8a4db1d0eb4e65171d012ffc4a7019880f90b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71f49405e5ea50392f83ed96ca0a81cfadf3cec2")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrashCollectionAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrashCollectionAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

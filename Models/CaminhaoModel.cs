@@ -4,10 +4,10 @@ namespace TrashCollectionAPI.Models
 {
     public class CaminhaoModel
     {
-        public int idCaminhao;
-        public string modelo;
-        public int numeroCapacidade;
-        public int numeroMaxCapacidade;
-        public StatusModel nomeStatus;
+        public int IdCaminhao;
+        public string Modelo;
+        public int NumeroCapacidade;
+        public int HNumeroMaxCapacidade;
+        public StatusModel NomeStatus;
     }
 }
