@@ -16,31 +16,51 @@ namespace TrashCollectionAPI.Data.Contexts
             {
                 entity.ToTable("Caminhao");
                 entity.HasKey(e => e.IdCaminhao);
-                entity.Property(e => e.HNumeroMaxCapacidade).IsRequired();  
-
+                entity.Property(e => e.HNumeroMaxCapacidade).IsRequired();
+                entity.HasOne(e => e.Status)
+                      .WithMany(s => s.Caminhoes)
+                      .HasForeignKey(e => e.IdStatus)
+                      .IsRequired();
             });
 
             modelBuilder.Entity<ColetaModel>(entity =>
             {
                 entity.ToTable("Coleta");
+                entity.HasKey(e => e.IdColeta);
+                entity.Property(e => e.NumeroVolume).IsRequired();
+
+                entity.HasMany(e => e.Rotas)
+                      .WithOne(r => r.Coleta)
+                      .HasForeignKey(r => r.IdColeta)
+                      .IsRequired();
             });
 
             modelBuilder.Entity<RotaModel>(entity =>
             {
                 entity.ToTable("Rota");
+                entity.HasKey(e => e.IdRota);
+                entity.Property(e => e.DescricaoRota).IsRequired(); // Adicione outras configurações necessárias
+
+                entity.HasOne(r => r.Coleta)
+                      .WithMany(c => c.Rotas)
+                      .HasForeignKey(r => r.IdColeta)
+                      .IsRequired();
             });
 
             modelBuilder.Entity<StatusModel>(entity =>
             {
                 entity.ToTable("Status");
+                entity.HasKey(e => e.IdStatus); // Definir a chave primária
+                entity.HasMany(s => s.Caminhoes)
+                      .WithOne(e => e.Status)
+                      .HasForeignKey(e => e.IdStatus);
             });
-
-
         }
 
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
+
         protected DatabaseContext()
         {
         }

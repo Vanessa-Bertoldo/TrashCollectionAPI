@@ -4,5 +4,6 @@
     {
         public int IdStatus;
         public string NomeStatus;
+        public ICollection<CaminhaoModel> Caminhoes { get; set; } = new List<CaminhaoModel>();  
     }
 }

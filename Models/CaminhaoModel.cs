@@ -8,6 +8,7 @@ namespace TrashCollectionAPI.Models
         public string Modelo;
         public int NumeroCapacidade;
         public int HNumeroMaxCapacidade;
-        public StatusModel NomeStatus;
+        public int IdStatus { get; set; }
+        public StatusModel Status;
     }
 }

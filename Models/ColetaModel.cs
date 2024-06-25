@@ -9,7 +9,7 @@ namespace TrashCollectionAPI.Models
         public double NumeroVolume;
         public Date DataColeta;
         public Date DataRegistro;
-        public RotaModel Rota;
+        public ICollection<RotaModel> Rotas { get; set; } = new List<RotaModel>();
     }
 }
 
