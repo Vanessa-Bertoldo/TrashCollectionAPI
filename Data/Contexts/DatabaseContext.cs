@@ -28,7 +28,6 @@ namespace TrashCollectionAPI.Data.Contexts
                 entity.ToTable("Coleta");
                 entity.HasKey(e => e.IdColeta);
                 entity.Property(e => e.NumeroVolume).IsRequired();
-
                 entity.HasMany(e => e.Rotas)
                       .WithOne(r => r.Coleta)
                       .HasForeignKey(r => r.IdColeta)
@@ -39,8 +38,7 @@ namespace TrashCollectionAPI.Data.Contexts
             {
                 entity.ToTable("Rota");
                 entity.HasKey(e => e.IdRota);
-                entity.Property(e => e.DescricaoRota).IsRequired(); // Adicione outras configurações necessárias
-
+                entity.Property(e => e.DescricaoRota).IsRequired();
                 entity.HasOne(r => r.Coleta)
                       .WithMany(c => c.Rotas)
                       .HasForeignKey(r => r.IdColeta)
@@ -50,14 +48,15 @@ namespace TrashCollectionAPI.Data.Contexts
             modelBuilder.Entity<StatusModel>(entity =>
             {
                 entity.ToTable("Status");
-                entity.HasKey(e => e.IdStatus); // Definir a chave primária
+                entity.HasKey(e => e.IdStatus);
+                entity.Property(e => e.NomeStatus).IsRequired();
                 entity.HasMany(s => s.Caminhoes)
                       .WithOne(e => e.Status)
                       .HasForeignKey(e => e.IdStatus);
             });
         }
 
-        public DatabaseContext(DbContextOptions options) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
         }
 
