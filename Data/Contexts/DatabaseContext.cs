@@ -21,13 +21,19 @@ namespace TrashCollectionAPI.Data.Contexts
                       .WithMany(s => s.Caminhoes)
                       .HasForeignKey(e => e.IdStatus)
                       .IsRequired();
+                entity.Property(e => e.Modelo).IsRequired();
+                entity.Property(e => e.NumeroCapacidade).IsRequired();
             });
 
             modelBuilder.Entity<ColetaModel>(entity =>
             {
                 entity.ToTable("Coleta");
                 entity.HasKey(e => e.IdColeta);
+                entity.Property(e => e.NomeBairro).IsRequired();
                 entity.Property(e => e.NumeroVolume).IsRequired();
+                entity.Property(e => e.DataColeta).HasColumnType("date").IsRequired();
+                entity.Property(e => e.DataRegistro).HasColumnType("date").IsRequired();
+
                 entity.HasMany(e => e.Rotas)
                       .WithOne(r => r.Coleta)
                       .HasForeignKey(r => r.IdColeta)
@@ -38,7 +44,9 @@ namespace TrashCollectionAPI.Data.Contexts
             {
                 entity.ToTable("Rota");
                 entity.HasKey(e => e.IdRota);
+                entity.Property(e => e.NomeRota).IsRequired();
                 entity.Property(e => e.DescricaoRota).IsRequired();
+
                 entity.HasOne(r => r.Coleta)
                       .WithMany(c => c.Rotas)
                       .HasForeignKey(r => r.IdColeta)
@@ -50,13 +58,15 @@ namespace TrashCollectionAPI.Data.Contexts
                 entity.ToTable("Status");
                 entity.HasKey(e => e.IdStatus);
                 entity.Property(e => e.NomeStatus).IsRequired();
+
                 entity.HasMany(s => s.Caminhoes)
-                      .WithOne(e => e.Status)
-                      .HasForeignKey(e => e.IdStatus);
+                      .WithOne(c => c.Status)
+                      .HasForeignKey(c => c.IdStatus)
+                      .IsRequired();
             });
         }
 
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
 
