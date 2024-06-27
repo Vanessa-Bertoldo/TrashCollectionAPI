@@ -5,11 +5,11 @@ namespace TrashCollectionAPI.ViewModel
 {
     public class ColetaViewModel
     {
-        public int IdColeta;
-        public string NomeBairro;
-        public double NumeroVolume;
-        public Date DataColeta;
-        public Date DataRegistro;
-        public ICollection<RotaModel> Rotas { get; set; } = new List<RotaModel>();
+        public int IdColeta { get; set; }
+        public string NomeBairro { get; set; }
+        public double NumeroVolume { get; set; }
+        public DateTime DataColeta { get; set; }
+        public DateTime DataRegistro { get; set; }
+        public List<RotaViewModel> Rotas { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace TrashCollectionAPI.Services
            var coleta = _repository.GetColetaById(id);
            if(coleta != null)
             {
-                _repository.DeleteColeta(coleta);
+                //_repository.DeleteColeta(coleta);
             }
         }
 

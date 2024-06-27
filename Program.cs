@@ -18,20 +18,28 @@ builder.Services.AddDbContext<DatabaseContext>(
 
 #region Repositorios
 builder.Services.AddScoped<IColetaRepository, ColetaRepository>();
+builder.Services.AddScoped<IRotaRepository, RotaRepository>();
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
 #endregion
 
 #region Services
 builder.Services.AddScoped<IColetaService, ColetaService>();
+//builder.Services.AddScoped<IRotaService, RotaService>();
+//builder.Services.AddScoped<IStatusService, StatusService>();
+//builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
 #endregion
 
 #region AutoMapper
-var mapperConfig = new AutoMapper.MapperConfiguration(c =>
+var mapperConfig = new MapperConfiguration(config =>
 {
-    c.AllowNullCollections = true;
-    c.AllowNullDestinationValues = true;
+    config.AllowNullCollections = true;
+    config.AllowNullDestinationValues = true;
 
-    c.CreateMap<ColetaModel, ColetaViewModel>();
-    c.CreateMap<ColetaViewModel, ColetaViewModel>();
+    config.CreateMap<ColetaModel, ColetaViewModel>().ReverseMap();
+    config.CreateMap<RotaModel, RotaViewModel>().ReverseMap();
+    config.CreateMap<CaminhaoModel, CaminhaoViewModel>().ReverseMap();
+    config.CreateMap<StatusModel, StatusViewModel>().ReverseMap();
 });
 
 IMapper mapper = mapperConfig.CreateMapper();

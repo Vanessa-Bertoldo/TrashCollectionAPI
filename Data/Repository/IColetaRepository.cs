@@ -6,9 +6,9 @@ namespace TrashCollectionAPI.Data.Repository
     {
         IEnumerable<ColetaModel> GetAllColetas();
         ColetaModel GetColetaById(int id);
-        void UpdateColeta(ColetaModel coleta);    
-        void DeleteColeta(ColetaModel coleta);
         void AddNewColeta(ColetaModel coleta);
+        void UpdateColeta(ColetaModel coleta);
+        void DeleteColeta(ColetaModel coleta);
 
 
     }

@@ -6,8 +6,8 @@ namespace TrashCollectionAPI.Services
     {
         IEnumerable<ColetaModel> GetAllColetas();
         ColetaModel GetColetaById(int id);
+        void AddNewColeta(ColetaModel coleta);
         void UpdateColeta(ColetaModel coleta);
         void DeleteColeta(int id);
-        void AddNewColeta(ColetaModel coleta);
     }
 }

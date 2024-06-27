@@ -21,8 +21,6 @@ namespace TrashCollectionAPI.Data.Contexts
                       .WithMany(s => s.Caminhoes)
                       .HasForeignKey(e => e.IdStatus)
                       .IsRequired();
-                entity.Property(e => e.Modelo).IsRequired();
-                entity.Property(e => e.NumeroCapacidade).IsRequired();
             });
 
             modelBuilder.Entity<ColetaModel>(entity =>
@@ -31,8 +29,8 @@ namespace TrashCollectionAPI.Data.Contexts
                 entity.HasKey(e => e.IdColeta);
                 entity.Property(e => e.NomeBairro).IsRequired();
                 entity.Property(e => e.NumeroVolume).IsRequired();
-                entity.Property(e => e.DataColeta).HasColumnType("date").IsRequired();
-                entity.Property(e => e.DataRegistro).HasColumnType("date").IsRequired();
+                entity.Property(e => e.DataColeta).IsRequired();
+                entity.Property(e => e.DataRegistro).IsRequired();
 
                 entity.HasMany(e => e.Rotas)
                       .WithOne(r => r.Coleta)
@@ -58,20 +56,14 @@ namespace TrashCollectionAPI.Data.Contexts
                 entity.ToTable("Status");
                 entity.HasKey(e => e.IdStatus);
                 entity.Property(e => e.NomeStatus).IsRequired();
-
                 entity.HasMany(s => s.Caminhoes)
-                      .WithOne(c => c.Status)
-                      .HasForeignKey(c => c.IdStatus)
-                      .IsRequired();
+                      .WithOne(e => e.Status)
+                      .HasForeignKey(e => e.IdStatus);
             });
         }
 
-        public DatabaseContext(DbContextOptions options) : base(options)
-        {
-        }
+        public DatabaseContext(DbContextOptions options) : base(options) { }
 
-        protected DatabaseContext()
-        {
-        }
+        protected DatabaseContext() { }
     }
 }

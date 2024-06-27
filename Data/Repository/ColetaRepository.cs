@@ -24,7 +24,7 @@ namespace TrashCollectionAPI.Data.Repository
             _context.SaveChanges();
         }
 
-        public IEnumerable<ColetaModel> GetAllColetas() => _context.Coleta.Include(c => c.Rotas).ToList();
+        public IEnumerable<ColetaModel> GetAllColetas() => _context.Coleta.ToList();
 
         public ColetaModel GetColetaById(int id) => _context.Coleta.Find(id);
 

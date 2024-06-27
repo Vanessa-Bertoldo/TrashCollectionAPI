@@ -21,11 +21,25 @@ namespace TrashCollectionAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ColetaModel>> Get()
+        public ActionResult<IEnumerable<ColetaViewModel>> Get()
         {
             var coletas = _service.GetAllColetas();
             var viewModelList = _mapper.Map<IEnumerable<ColetaViewModel>>(coletas);
             return Ok(viewModelList);
         }
+
+        [HttpPost]
+        public ActionResult Post([FromBody] ColetaViewModel viewModel)
+        {
+            var coleta = _mapper.Map<ColetaModel>(viewModel);
+            if (coleta != null)
+            {
+                _service.AddNewColeta(coleta);
+                return CreatedAtAction(nameof(Get), new { id = coleta.IdColeta }, viewModel);
+            }
+            return NotFound();
+        }
+
+
     }
 }

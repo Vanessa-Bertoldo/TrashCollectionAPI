@@ -4,11 +4,8 @@ namespace TrashCollectionAPI.ViewModel
 {
     public class CaminhaoViewModel
     {
-        public int IdCaminhao;
-        public string Modelo;
-        public int NumeroCapacidade;
-        public int HNumeroMaxCapacidade;
+        public int IdCaminhao { get; set; }
         public int IdStatus { get; set; }
-        public StatusModel Status;
+        public int HNumeroMaxCapacidade { get; set; }
     }
 }
