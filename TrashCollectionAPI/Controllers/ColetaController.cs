@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TrashCollectionAPI.Data.Contexts;
 using TrashCollectionAPI.Models;
 using TrashCollectionAPI.Services;
@@ -14,11 +15,11 @@ namespace TrashCollectionAPI.Controllers
     {
         private readonly IColetaService _service;
         private readonly IMapper _mapper;
-        private DatabaseContext @object;
+        private readonly DatabaseContext _context;
 
-        public ColetaController(DatabaseContext @object)
+        public ColetaController(DatabaseContext context)
         {
-            this.@object = @object;
+            _context = context;
         }
 
         public ColetaController(IColetaService service, IMapper mapper)
