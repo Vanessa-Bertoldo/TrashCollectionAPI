@@ -16,8 +16,7 @@ namespace TrashCollectionAPI.Services
                 };
         public UserModel Authenticate(string username, string password)
         {
-            return new List<UserModel>
-            //return _users.FirstOrDefault(username == "");
+            return new UserModel { UserId = 1, Username = "operador01", Password = "pass123", Role = "operador" };
         }
     }
 }

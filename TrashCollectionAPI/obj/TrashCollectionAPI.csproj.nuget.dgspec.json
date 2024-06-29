@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI.csproj": {}
+    "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI\\TrashCollectionAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI.csproj": {
+    "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI\\TrashCollectionAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI\\TrashCollectionAPI.csproj",
         "projectName": "TrashCollectionAPI",
-        "projectPath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI.csproj",
+        "projectPath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI\\TrashCollectionAPI.csproj",
         "packagesPath": "C:\\Users\\Z\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\obj\\",
+        "outputPath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Z\\AppData\\Roaming\\NuGet\\NuGet.Config",
