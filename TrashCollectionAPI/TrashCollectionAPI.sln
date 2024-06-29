@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrashCollectionAPI", "TrashCollectionAPI.csproj", "{DF299BD6-0A05-48BC-99AC-752DFC6071BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrashCollectionAPI", "TrashCollectionAPI.csproj", "{DF299BD6-0A05-48BC-99AC-752DFC6071BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrashCollectionAPI.Tests", "..\TrashCollectionAPI.Tests\TrashCollectionAPI.Tests.csproj", "{FF90C6E5-3575-4092-93C7-668DF5A19571}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DF299BD6-0A05-48BC-99AC-752DFC6071BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF299BD6-0A05-48BC-99AC-752DFC6071BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF299BD6-0A05-48BC-99AC-752DFC6071BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF90C6E5-3575-4092-93C7-668DF5A19571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF90C6E5-3575-4092-93C7-668DF5A19571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF90C6E5-3575-4092-93C7-668DF5A19571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF90C6E5-3575-4092-93C7-668DF5A19571}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
