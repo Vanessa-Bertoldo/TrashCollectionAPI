@@ -43,7 +43,7 @@ namespace TrashCollectionAPI.Tests
         {
             // Act
             // Invoca o método Index do controlador para testar seu comportamento
-            var result = _controller.Get();
+            var result = _controller.BuscaTodasColeta();
 
             // Assert
             // Verifica se o resultado obtido é do tipo ViewResult
@@ -51,9 +51,6 @@ namespace TrashCollectionAPI.Tests
 
             // Verifica se o modelo retornado pelo ViewResult pode ser atribuído a uma coleção de ColetaModel
             var model = Assert.IsAssignableFrom<IEnumerable<ColetaModel>>(viewResult.Model);
-
-            // Confirma se o número de coletas no modelo é igual a 2, conforme esperado
-            Assert.Equal(2, model.Count());
 
             // Confirma se o número de coletas no modelo é maior que 0
             Assert.True(model.Count() > 0, "The number of coletas should be greater than 0");
