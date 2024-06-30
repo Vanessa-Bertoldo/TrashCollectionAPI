@@ -72,7 +72,6 @@ namespace TrashCollectionAPI.Tests
         [Fact]
         public void AgendarColeta_ReturnsCreatedAtAction() 
         {
-            // Arrange
             var viewModel = new ColetaViewModel
             {
                 IdColeta = 3, 
@@ -80,14 +79,54 @@ namespace TrashCollectionAPI.Tests
                 DataRegistro = DateTime.Now,
             };
 
-            // Act
             var result = _controller.AgendarColeta(viewModel);
 
-            // Assert
             var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
             Assert.Equal(nameof(_controller.BuscaTodasColeta), createdAtActionResult.ActionName);
             Assert.Equal(viewModel.IdColeta, createdAtActionResult.RouteValues["id"]);
         }
+
+        [Fact]
+        public void BuscarColeta_ReturnsOkObjectResult_WithColetaViewModel()
+        {
+            // Arrange
+            int coletaId = 1;
+            var coleta = new ColetaModel { IdColeta = coletaId, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() };
+            _mockService.Setup(s => s.GetColetaById(coletaId)).Returns(coleta);
+
+            // Act
+            var result = _controller.BuscarColeta(coletaId);
+
+            // Assert
+            var actionResult = Assert.IsType<ActionResult<ColetaViewModel>>(result);
+            var okObjectResult = Assert.IsType<OkObjectResult>(actionResult.Result);
+            var model = Assert.IsType<ColetaViewModel>(okObjectResult.Value);
+            Assert.Equal(coleta.IdColeta, model.IdColeta);
+        }
+
+        [Fact]
+        public void DeleteColeta_ReturnsNoContentResult()
+        {
+            int coletaId = 1;
+            var coleta = new ColetaModel { IdColeta = coletaId, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() };
+            _mockService.Setup(s => s.GetColetaById(coletaId)).Returns(coleta);
+
+            var result = _controller.DeleteColeta(coletaId);
+
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        [Fact]
+        public void DeleteColeta_ReturnsNotFoundResult_WhenColetaNotFound()
+        {
+            int coletaId = 999; 
+            _mockService.Setup(s => s.GetColetaById(coletaId)).Returns((ColetaModel)null);
+
+            var result = _controller.DeleteColeta(coletaId);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
     }
 
 

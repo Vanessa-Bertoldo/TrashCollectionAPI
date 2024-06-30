@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrashCollectionAPI.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da90f1262e7eccd17ee78fdda886cc4342252546")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70ff4897aa21a4e0971538839311c750602381dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrashCollectionAPI.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrashCollectionAPI.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
