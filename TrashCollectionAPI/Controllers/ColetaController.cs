@@ -17,10 +17,6 @@ namespace TrashCollectionAPI.Controllers
         private readonly IMapper _mapper;
         private readonly DatabaseContext _context;
 
-        public ColetaController(DatabaseContext context)
-        {
-            _context = context;
-        }
 
         public ColetaController(IColetaService service, IMapper mapper)
         {
