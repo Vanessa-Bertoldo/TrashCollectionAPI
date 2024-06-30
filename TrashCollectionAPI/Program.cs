@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TrashCollectionAPI.Data;
 using TrashCollectionAPI.Data.Contexts;
 using TrashCollectionAPI.Data.Repository;
 using TrashCollectionAPI.Models;
@@ -28,7 +29,7 @@ builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
 
 #region Services
 builder.Services.AddScoped<IColetaService, ColetaService>();
-//builder.Services.AddScoped<IRotaService, RotaService>();
+builder.Services.AddScoped<IRotaService, RotaService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
 #endregion
@@ -86,6 +87,24 @@ app.UseHttpsRedirection();
 app.UseAuthentication(); 
 app.UseAuthorization();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<DatabaseContext>();
+        InitialData.Initialize(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Ocorreu um erro durante a inicialização do banco de dados.");
+    }
+}
+
+
 app.MapControllers();
 
 app.Run();
+
+

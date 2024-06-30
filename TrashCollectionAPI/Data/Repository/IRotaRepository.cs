@@ -8,6 +8,6 @@ namespace TrashCollectionAPI.Data.Repository
         RotaModel GetRotaById(int id);
         void AddNewRota(RotaModel rota);
         void UpdateRota(RotaModel rota);
-        void DeleteRota(int id);
+        void DeleteRota(RotaModel rota);
     }
 }

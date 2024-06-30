@@ -58,6 +58,19 @@
             <param name="id">id da coleta que deseja deletar.</param>
             <returns>Retorna status 200.</returns>
         </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.BuscarTodasRotas">
+            <summary>
+            Busca todas as rotas.
+            </summary>
+            <returns>Uma ação que retorna uma lista de RotaViewModel.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.CadastrarRota(TrashCollectionAPI.ViewModel.RotaViewModel)">
+            <summary>
+            Agenda uma nova coleta com base nos dados fornecidos no RotaViewModel.
+            </summary>
+            <param name="viewModel">O modelo de visualização contendo os dados da rota.</param>
+            <returns>Uma ação que retorna o resultado da criação da rota.</returns>
+        </member>
         <member name="M:TrashCollectionAPI.Controllers.StatusController.CadastrarStatus(TrashCollectionAPI.ViewModel.StatusViewModel)">
             <summary>
             Cria um novo registro de status
