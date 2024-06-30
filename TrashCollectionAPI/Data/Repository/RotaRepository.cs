@@ -36,7 +36,8 @@ namespace TrashCollectionAPI.Data.Repository
 
         public void UpdateRota(RotaModel rota)
         {
-            throw new NotImplementedException();
+            _context.Update(rota);
+            _context.SaveChanges();
         }
     }
 }

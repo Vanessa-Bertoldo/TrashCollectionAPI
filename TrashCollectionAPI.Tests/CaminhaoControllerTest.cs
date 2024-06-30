@@ -136,4 +136,35 @@ public class CaminhaoControllerTest
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
         Assert.Equal("Id não pode ser negativo.", badRequestResult.Value);
     }
+
+    [Fact]
+    public void AtualizarCaminhao_ReturnsOk()
+    {
+        var caminhaoViewModel = new CaminhaoViewModel
+        {
+            IdCaminhao = 1,
+            Modelo = "Modelo A",
+            NumeroCapacidade = 200,
+            HNumeroMaxCapacidade = 150,
+            IdStatus = 1
+        };
+
+        var caminhaoModel = new CaminhaoModel
+        {
+            IdCaminhao = 1,
+            Modelo = "Modelo A",
+            NumeroCapacidade = 200,
+            HNumeroMaxCapacidade = 150,
+            Status = new StatusModel { IdStatus = 1 }
+        };
+
+        _mockMapper.Setup(m => m.Map<CaminhaoModel>(caminhaoViewModel)).Returns(caminhaoModel);
+
+        // Act
+        var result = _controller.AtualizarCaminhao(caminhaoViewModel);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Equal("Os dados foram atualizados com sucesso", okResult.Value);
+    }
 }

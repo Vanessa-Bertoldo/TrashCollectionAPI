@@ -81,5 +81,18 @@ namespace TrashCollectionAPI.Controllers
             }
             return NotFound();
         }
+
+        /// <summary>
+        /// Atualiza os dados de uma coleta com base do id fornecido.
+        /// </summary>
+        /// <param name="coleta">Dados da coleta do tipo CaminhaoViewModel.</param>
+        /// <returns>200</returns>
+        [HttpPut]
+        public ActionResult AtualizarColeta([FromBody] ColetaViewModel coleta)
+        {
+            var coletaModel = _mapper.Map<ColetaModel>(coleta);
+            _service.UpdateColeta(coletaModel);
+            return Ok("Os dados foram atualizados com sucesso");
+        }
     }
 }

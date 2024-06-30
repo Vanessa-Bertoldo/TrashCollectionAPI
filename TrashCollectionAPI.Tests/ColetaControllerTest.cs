@@ -125,4 +125,33 @@ public class ColetaControllerTest
         // Assert
         Assert.IsType<NoContentResult>(result);
     }
+
+    [Fact]
+    public void AtualizarColeta_ReturnsOk()
+    {
+        var coletaViewModel = new ColetaViewModel
+        {
+            IdColeta = 1,
+            NumeroVolume = 15.5,
+            DataRegistro = DateTime.Now,
+            NomeBairro = "Centro"
+        };
+
+        var coletaModel = new ColetaModel
+        {
+            IdColeta = 1,
+            NumeroVolume = 15.5,
+            DataRegistro = DateTime.Now,
+            NomeBairro = "Centro"
+        };
+
+        _mockMapper.Setup(m => m.Map<ColetaModel>(coletaViewModel)).Returns(coletaModel);
+
+        // Act
+        var result = _controller.AtualizarColeta(coletaViewModel);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Equal("Os dados foram atualizados com sucesso", okResult.Value);
+    }
 }

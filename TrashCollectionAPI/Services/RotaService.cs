@@ -28,9 +28,6 @@ namespace TrashCollectionAPI.Services
 
         public RotaModel GetRotaById(int id) => _repository.GetRotaById(id);
 
-        public void UpdateRota(RotaModel rota)
-        {
-            throw new NotImplementedException();
-        }
+        public void UpdateRota(RotaModel rota) => _repository.UpdateRota(rota);
     }
 }

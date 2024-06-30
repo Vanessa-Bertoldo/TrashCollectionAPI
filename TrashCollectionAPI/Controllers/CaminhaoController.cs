@@ -86,5 +86,18 @@ namespace TrashCollectionAPI.Controllers
             _service.DeleteCaminhao(id);
             return Ok("Caminhao excluido com sucesso");
         }
+
+        /// <summary>
+        /// Atualiza os dados de um caminhao com base do id fornecido.
+        /// </summary>
+        /// <param name="caminhao">Dados do caminhao do tipo CaminhaoViewModel.</param>
+        /// <returns>200</returns>
+        [HttpPut]
+        public ActionResult AtualizarCaminhao([FromBody] CaminhaoViewModel caminhao)
+        {
+            var caminhaoModel = _mapper.Map<CaminhaoModel>(caminhao);
+            _service.UpdateCaminhao(caminhaoModel);
+            return Ok("Os dados foram atualizados com sucesso");
+        }
     }
 }

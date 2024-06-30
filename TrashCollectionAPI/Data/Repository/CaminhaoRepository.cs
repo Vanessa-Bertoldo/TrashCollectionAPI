@@ -29,7 +29,8 @@ namespace TrashCollectionAPI.Data.Repository
 
         public void UpdateCaminhao(CaminhaoModel caminhao)
         {
-            throw new NotImplementedException();
+            _context.Update(caminhao);
+            _context.SaveChanges(true);
         }
     }
 }
