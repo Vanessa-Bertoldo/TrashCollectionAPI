@@ -4,6 +4,12 @@
         <name>TrashCollectionAPI</name>
     </assembly>
     <members>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.BuscaTodosCaminhoes">
+            <summary>
+            Busca todas as coletas agendadas.
+            </summary>
+            <returns>Uma ação que retorna uma lista de ColetaViewModel.</returns>
+        </member>
         <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscaTodasColeta">
             <summary>
             Busca todas as coletas agendadas.
@@ -41,6 +47,18 @@
             <inheritdoc />
         </member>
         <member name="M:TrashCollectionAPI.Migrations.initialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TrashCollectionAPI.Migrations.change">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

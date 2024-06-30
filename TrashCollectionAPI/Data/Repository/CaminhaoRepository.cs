@@ -1,12 +1,20 @@
-﻿using TrashCollectionAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TrashCollectionAPI.Data.Contexts;
+using TrashCollectionAPI.Models;
 
 namespace TrashCollectionAPI.Data.Repository
 {
     public class CaminhaoRepository : ICaminhaoRepository
     {
+        private readonly DatabaseContext _context;
+        public CaminhaoRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
         public void AddNewCaminhao(CaminhaoModel caminhao)
         {
-            throw new NotImplementedException();
+            _context.Add(caminhao);
+            _context.SaveChanges();
         }
 
         public void DeleteCaminhao(int id)
@@ -14,15 +22,9 @@ namespace TrashCollectionAPI.Data.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CaminhaoModel> GetAllCaminhoes()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<CaminhaoModel> GetAllCaminhoes() => _context.Caminhao.Include(x => x.Status).ToList();
 
-        public CaminhaoModel GetCaminhaoById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public CaminhaoModel GetCaminhaoById(int id) => _context.Caminhao.Find(id);
 
         public void UpdateCaminhao(CaminhaoModel caminhao)
         {
