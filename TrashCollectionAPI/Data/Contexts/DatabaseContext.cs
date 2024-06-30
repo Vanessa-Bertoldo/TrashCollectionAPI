@@ -26,25 +26,30 @@ namespace TrashCollectionAPI.Data.Contexts
             });
             modelBuilder.Entity<ColetaModel>(entity =>
             {
-                entity.ToTable("Coleta");
-                entity.HasKey(e => e.IdColeta);
+                entity.ToTable("Coleta"); 
+                entity.HasKey(e => e.IdColeta); 
+
                 entity.Property(e => e.NomeBairro).IsRequired();
                 entity.Property(e => e.NumeroVolume).IsRequired();
                 entity.Property(e => e.DataColeta).IsRequired();
                 entity.Property(e => e.DataRegistro).IsRequired();
 
-                entity.HasMany(e => e.Rotas)
-                      .WithOne(r => r.Coleta)
-                      .HasForeignKey(r => r.IdColeta)
-                      .IsRequired();
+                entity.HasMany(coleta => coleta.Rotas)
+                      .WithOne(rota => rota.Coleta)   
+                      .HasForeignKey(rota => rota.IdColeta) 
+                      .IsRequired(); 
             });
-
             modelBuilder.Entity<RotaModel>(entity =>
             {
                 entity.ToTable("Rota");
                 entity.HasKey(e => e.IdRota);
                 entity.Property(e => e.NomeRota).IsRequired();
                 entity.Property(e => e.DescricaoRota).IsRequired();
+
+                entity.HasOne(r => r.Coleta)
+                      .WithMany(c => c.Rotas)
+                      .HasForeignKey(r => r.IdColeta)
+                      .IsRequired();
             });
 
             modelBuilder.Entity<StatusModel>(entity =>

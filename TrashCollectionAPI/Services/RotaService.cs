@@ -24,6 +24,8 @@ namespace TrashCollectionAPI.Services
 
         public IEnumerable<RotaModel> GetAllRotas() => _repository.GetAllRotas();
 
+        public IEnumerable<RotaModel> GetAllRotas(int idColeta) => _repository.GetAllRotas(idColeta);
+
         public RotaModel GetRotaById(int id) => _repository.GetRotaById(id);
 
         public void UpdateRota(RotaModel rota)

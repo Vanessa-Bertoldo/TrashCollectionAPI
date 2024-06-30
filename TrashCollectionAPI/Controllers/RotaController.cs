@@ -24,7 +24,7 @@ namespace TrashCollectionAPI.Controllers
         /// Busca todas as rotas.
         /// </summary>
         /// <returns>Uma ação que retorna uma lista de RotaViewModel.</returns>
-        [HttpGet("Buscar rotas")]
+        [HttpGet("BuscarRotas")]
         public ActionResult<IEnumerable<RotaViewModel>> BuscarTodasRotas()
         {
             var rotas = _service.GetAllRotas();
@@ -43,6 +43,49 @@ namespace TrashCollectionAPI.Controllers
             var rota = _mapper.Map<RotaModel>(viewModel);
             _service.AddNewRota(rota);
             return CreatedAtAction(nameof(BuscarTodasRotas), new { id = rota.IdRota }, viewModel);
+        }
+
+        /// <summary>
+        /// Busca uma rota com base do id fornecido.
+        /// </summary>
+        /// <param name="id">id da rota que deseja buscar.</param>
+        /// <returns>Retorna uma rota.</returns>
+        [HttpGet("BuscarColeta{Id}")]
+        public ActionResult<RotaViewModel> BuscarRota([FromRoute] int Id)
+        {
+            var coleta = _service.GetRotaById(Id);
+            if (coleta == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = _mapper.Map<RotaViewModel>(coleta);
+            return Ok(viewModel);
+        }
+
+        /// <summary>
+        /// Exclui uma rota com base do id fornecido.
+        /// </summary>
+        /// <param name="id">id do rota que deseja excluir.</param>
+        /// <returns>200</returns>
+        [HttpDelete("DeleteStatus/{id}")]
+        public ActionResult DeleteColeta([FromRoute] int id)
+        {
+            _service.DeleteRota(id);
+            return Ok("Rota excluido com sucesso");
+        }
+
+        /// <summary>
+        /// Busca as rota com base do id fornecido.
+        /// </summary>
+        /// <param name="id">id da coleta que deseja buscar as rotas.</param>
+        /// <returns>Retorna uma rota.</returns>
+        [HttpGet("BuscarRotasDeUmaColeta{idColeta}")]
+        public ActionResult<IEnumerable<RotaViewModel>> BuscarTodasRotas([FromRoute] int idColeta)
+        {
+            var rotas = _service.GetAllRotas(idColeta);
+            var viewModelList = _mapper.Map<IEnumerable<RotaViewModel>>(rotas);
+            return Ok(viewModelList);
         }
     }
 }

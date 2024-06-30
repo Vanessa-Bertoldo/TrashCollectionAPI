@@ -71,6 +71,27 @@
             <param name="viewModel">O modelo de visualização contendo os dados da rota.</param>
             <returns>Uma ação que retorna o resultado da criação da rota.</returns>
         </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.BuscarRota(System.Int32)">
+            <summary>
+            Busca uma rota com base do id fornecido.
+            </summary>
+            <param name="id">id da rota que deseja buscar.</param>
+            <returns>Retorna uma rota.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.DeleteColeta(System.Int32)">
+            <summary>
+            Exclui uma rota com base do id fornecido.
+            </summary>
+            <param name="id">id do rota que deseja excluir.</param>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.BuscarTodasRotas(System.Int32)">
+            <summary>
+            Busca as rota com base do id fornecido.
+            </summary>
+            <param name="id">id da coleta que deseja buscar as rotas.</param>
+            <returns>Retorna uma rota.</returns>
+        </member>
         <member name="M:TrashCollectionAPI.Controllers.StatusController.CadastrarStatus(TrashCollectionAPI.ViewModel.StatusViewModel)">
             <summary>
             Cria um novo registro de status

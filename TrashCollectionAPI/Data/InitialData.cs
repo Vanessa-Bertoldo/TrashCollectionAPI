@@ -24,9 +24,9 @@ namespace TrashCollectionAPI.Data
             var coleta3 = new ColetaModel { NumeroVolume = 15.0, DataRegistro = DateTime.Now.AddDays(-3), NomeBairro = "Industrial" };
             context.Coleta.AddRange(coleta1, coleta2, coleta3);
 
-            var rota1 = new RotaModel { NomeRota = "Rota 1", DescricaoRota = "Descrição da Rota 1", Coleta = coleta1 };
-            var rota2 = new RotaModel { NomeRota = "Rota 2", DescricaoRota = "Descrição da Rota 2", Coleta = coleta2 };
-            var rota3 = new RotaModel { NomeRota = "Rota 3", DescricaoRota = "Descrição da Rota 3", Coleta = coleta3 };
+            var rota1 = new RotaModel { NomeRota = "Rota 1", DescricaoRota = "Descrição da Rota 1", IdColeta = coleta1.IdColeta };
+            var rota2 = new RotaModel { NomeRota = "Rota 2", DescricaoRota = "Descrição da Rota 2", IdColeta = coleta1.IdColeta };
+            var rota3 = new RotaModel { NomeRota = "Rota 3", DescricaoRota = "Descrição da Rota 3", IdColeta = coleta1.IdColeta };
             context.Rota.AddRange(rota1, rota2, rota3);
 
             var caminhao1 = new CaminhaoModel { HNumeroMaxCapacidade = 100, Status = status1 };

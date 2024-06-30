@@ -25,6 +25,13 @@ namespace TrashCollectionAPI.Data.Repository
 
         public IEnumerable<RotaModel> GetAllRotas() => _context.Rota.ToList();
 
+        public IEnumerable<RotaModel> GetAllRotas(int idColeta)
+        {
+            return _context.Rota
+               .Where(r => r.IdColeta == idColeta)
+               .ToList();
+        }
+
         public RotaModel GetRotaById(int id) => _context.Rota.Find(id);
 
         public void UpdateRota(RotaModel rota)
