@@ -25,6 +25,7 @@ builder.Services.AddScoped<IColetaRepository, ColetaRepository>();
 builder.Services.AddScoped<IRotaRepository, RotaRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 #endregion
 
 #region Services
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IColetaService, ColetaService>();
 builder.Services.AddScoped<IRotaService, RotaService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 #endregion
 
 #region AutoMapper
@@ -44,6 +46,15 @@ var mapperConfig = new MapperConfiguration(config =>
     config.CreateMap<RotaModel, RotaViewModel>().ReverseMap();
     config.CreateMap<CaminhaoModel, CaminhaoViewModel>().ReverseMap();
     config.CreateMap<StatusModel, StatusViewModel>().ReverseMap();
+    config.CreateMap<UserModel, UserViewModel>().ReverseMap();
+    config.CreateMap<AuthModel,  AuthViewModel>().ReverseMap();
+    config.CreateMap<TokenUserModel, TokenUserViewModel>().ReverseMap();
+    config.CreateMap<LoginViewModel, AuthModel>()
+           .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Usuario))
+           .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Senha))
+           .ReverseMap()
+           .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Username))
+           .ForMember(dest => dest.Senha, opt => opt.MapFrom(src => src.Password));
 });
 
 IMapper mapper = mapperConfig.CreateMapper();

@@ -157,5 +157,17 @@
         <member name="M:TrashCollectionAPI.Migrations.change.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:TrashCollectionAPI.Migrations.createTableUser">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

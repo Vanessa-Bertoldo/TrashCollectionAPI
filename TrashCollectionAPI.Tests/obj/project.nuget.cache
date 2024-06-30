@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "E353KgyCDoCcnfg++ZRmwJp0E+fHukVuO5Obz/vF42HIFt87eLbohkZTP1ASACgdt9OTVHa56uW2lLEqnHQw1g==",
+  "dgSpecHash": "IFnHQu+eoH7OWavzaRC2X5I9dden7tvC06hzCvKAEETVbnVc3WjJBNlApq3C5Janji58B2pYb1jATQzr+m1XTw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI.Tests\\TrashCollectionAPI.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Z\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\Z\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Z\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Z\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Z\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

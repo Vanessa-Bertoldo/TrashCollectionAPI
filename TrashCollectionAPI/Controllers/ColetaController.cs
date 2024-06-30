@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace TrashCollectionAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ColetaController : ControllerBase
     {
         private readonly IColetaService _service;
@@ -88,7 +90,7 @@ namespace TrashCollectionAPI.Controllers
         /// <param name="coleta">Dados da coleta do tipo CaminhaoViewModel.</param>
         /// <returns>200</returns>
         [HttpPut("{id}")]
-        public ActionResult AtualizarColeta([FromBody] int id, [FromBody] ColetaViewModel coleta)
+        public ActionResult AtualizarColeta([FromRoute] int id, [FromBody] ColetaViewModel coleta)
         {
             var exists = _service.GetColetaById(id);
             if (exists != null)

@@ -9,6 +9,7 @@ namespace TrashCollectionAPI.Data.Contexts
         public virtual DbSet<ColetaModel> Coleta { get; set; }
         public virtual DbSet<RotaModel> Rota { get; set; }
         public virtual DbSet<StatusModel> Status { get; set; }
+        public virtual DbSet<UserModel> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -57,6 +58,12 @@ namespace TrashCollectionAPI.Data.Contexts
                 entity.ToTable("Status"); 
                 entity.HasKey(e => e.IdStatus);
                
+            });
+
+            modelBuilder.Entity<UserModel>(entity =>
+            {
+                entity.ToTable("Usuario");
+                entity.HasKey(e => e.UserId);
             });
         }
 

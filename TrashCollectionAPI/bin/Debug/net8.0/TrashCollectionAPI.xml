@@ -133,6 +133,13 @@
             <param name="id">id do status que deseja excluir.</param>
             <returns>200</returns>
         </member>
+        <member name="M:TrashCollectionAPI.Controllers.UsuarioController.CadastrarUsuario(TrashCollectionAPI.ViewModel.UserViewModel)">
+            <summary>
+            Cria um novo registro de usuario
+            </summary>
+            <param name="usuario">Dados do usuario que deseja cadastrar.</param>
+            <returns>201</returns>
+        </member>
         <member name="T:TrashCollectionAPI.Migrations.initialMigration">
             <inheritdoc />
         </member>
@@ -155,6 +162,18 @@
             <inheritdoc />
         </member>
         <member name="M:TrashCollectionAPI.Migrations.change.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TrashCollectionAPI.Migrations.createTableUser">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>
