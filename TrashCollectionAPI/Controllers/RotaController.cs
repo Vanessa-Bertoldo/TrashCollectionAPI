@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrashCollectionAPI.Models;
@@ -9,6 +10,7 @@ namespace TrashCollectionAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RotaController : ControllerBase
     {
         private readonly IRotaService _service;
