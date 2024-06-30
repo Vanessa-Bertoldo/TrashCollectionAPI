@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "OYWCEfMmbdmF28FHK+ye8E2RIeB6sEbCt7kC3M0YMKZS5REAQjA8DIJsUz4WZTZVpIoJi0FsLE07h+ddnEzc5w==",
+  "dgSpecHash": "IR1FrjYihSSO20bFr0WKSVHO7gCPDEU8X+mhLqo7QpedNWlFDhgevW3dmteA4gSA1qLKcNPNRYjzdr0pEwraOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI\\TrashCollectionAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Z\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\Z\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Z\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Z\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
     "C:\\Users\\Z\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

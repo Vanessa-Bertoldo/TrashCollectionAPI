@@ -17,9 +17,10 @@ namespace TrashCollectionAPI.Data.Repository
             _context.SaveChanges();
         }
 
-        public void DeleteCaminhao(int id)
+        public void DeleteCaminhao(CaminhaoModel caminhao)
         {
-            throw new NotImplementedException();
+            _context.Remove(caminhao);
+            _context.SaveChanges();
         }
 
         public IEnumerable<CaminhaoModel> GetAllCaminhoes() => _context.Caminhao.Include(x => x.Status).ToList();
@@ -28,7 +29,8 @@ namespace TrashCollectionAPI.Data.Repository
 
         public void UpdateCaminhao(CaminhaoModel caminhao)
         {
-            throw new NotImplementedException();
+            _context.Update(caminhao);
+            _context.SaveChanges(true);
         }
     }
 }

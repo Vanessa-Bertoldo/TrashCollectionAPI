@@ -23,7 +23,7 @@ namespace TrashCollectionAPI.Services
 
         public void UpdateCaminhao(CaminhaoModel caminhao)
         {
-            throw new NotImplementedException();
+            _repository.UpdateCaminhao(caminhao);
         }
     }
 }

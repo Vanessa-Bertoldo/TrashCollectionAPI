@@ -136,3 +136,4 @@ C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI.Tes
 C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI.Tests\obj\Debug\net8.0\TrashCollectionAPI.Tests.genruntimeconfig.cache
 C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI.Tests\obj\Debug\net8.0\ref\TrashCollectionAPI.Tests.dll
 C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI.Tests\bin\Debug\net8.0\TrashCollectionAPI.xml
+C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI.Tests\bin\Debug\net8.0\BCrypt.Net-Next.dll

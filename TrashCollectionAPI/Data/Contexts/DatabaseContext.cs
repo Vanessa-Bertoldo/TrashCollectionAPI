@@ -9,6 +9,7 @@ namespace TrashCollectionAPI.Data.Contexts
         public virtual DbSet<ColetaModel> Coleta { get; set; }
         public virtual DbSet<RotaModel> Rota { get; set; }
         public virtual DbSet<StatusModel> Status { get; set; }
+        public virtual DbSet<UserModel> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,19 +27,19 @@ namespace TrashCollectionAPI.Data.Contexts
             });
             modelBuilder.Entity<ColetaModel>(entity =>
             {
-                entity.ToTable("Coleta");
-                entity.HasKey(e => e.IdColeta);
+                entity.ToTable("Coleta"); 
+                entity.HasKey(e => e.IdColeta); 
+
                 entity.Property(e => e.NomeBairro).IsRequired();
                 entity.Property(e => e.NumeroVolume).IsRequired();
                 entity.Property(e => e.DataColeta).IsRequired();
                 entity.Property(e => e.DataRegistro).IsRequired();
 
-                entity.HasMany(e => e.Rotas)
-                      .WithOne(r => r.Coleta)
-                      .HasForeignKey(r => r.IdColeta)
-                      .IsRequired();
+                entity.HasMany(coleta => coleta.Rotas)
+                      .WithOne(rota => rota.Coleta)   
+                      .HasForeignKey(rota => rota.IdColeta) 
+                      .IsRequired(); 
             });
-
             modelBuilder.Entity<RotaModel>(entity =>
             {
                 entity.ToTable("Rota");
@@ -57,6 +58,12 @@ namespace TrashCollectionAPI.Data.Contexts
                 entity.ToTable("Status"); 
                 entity.HasKey(e => e.IdStatus);
                
+            });
+
+            modelBuilder.Entity<UserModel>(entity =>
+            {
+                entity.ToTable("Usuario");
+                entity.HasKey(e => e.UserId);
             });
         }
 

@@ -4,6 +4,7 @@ namespace TrashCollectionAPI.Services
 {
     public interface IAuthService
     {
-        UserModel Authenticate(string username, string password);
+        void RegisterUser(UserModel user);
+        TokenUserModel VerificaLogin(AuthModel auth);
     }
 }

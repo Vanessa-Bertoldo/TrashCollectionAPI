@@ -8,6 +8,6 @@ namespace TrashCollectionAPI.Data.Repository
         CaminhaoModel GetCaminhaoById(int id);
         void AddNewCaminhao(CaminhaoModel caminhao);
         void UpdateCaminhao(CaminhaoModel caminhao);
-        void DeleteCaminhao(int id);
+        void DeleteCaminhao(CaminhaoModel caminhao);
     }
 }

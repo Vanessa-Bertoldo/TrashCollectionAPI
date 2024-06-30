@@ -119,6 +119,30 @@ namespace TrashCollectionAPI.Migrations
                     b.ToTable("Status", (string)null);
                 });
 
+            modelBuilder.Entity("TrashCollectionAPI.Models.UserModel", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("NUMBER(10)");
+
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Usuario", (string)null);
+                });
+
             modelBuilder.Entity("TrashCollectionAPI.Models.CaminhaoModel", b =>
                 {
                     b.HasOne("TrashCollectionAPI.Models.StatusModel", "Status")

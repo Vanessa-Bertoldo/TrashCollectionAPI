@@ -24,6 +24,20 @@
             <param name="ViewModel">Dados para criar um registro de um novo caminhão.</param>
             <returns>Retorna o caminhao criado.</returns>
         </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.DeletarCaminhao(System.Int32)">
+            <summary>
+            Exclui um caminhao com base do id fornecido.
+            </summary>
+            <param name="id">id do caminhao que deseja excluir.</param>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.AtualizarCaminhao(System.Int32,TrashCollectionAPI.ViewModel.CaminhaoViewModel)">
+            <summary>
+            Atualiza os dados de um caminhao com base do id fornecido.
+            </summary>
+            <param name="caminhao">Dados do caminhao do tipo CaminhaoViewModel.</param>
+            <returns>200</returns>
+        </member>
         <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscaTodasColeta">
             <summary>
             Busca todas as coletas agendadas.
@@ -50,6 +64,47 @@
             </summary>
             <param name="id">id da coleta que deseja deletar.</param>
             <returns>Retorna status 200.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.AtualizarColeta(System.Int32,TrashCollectionAPI.ViewModel.ColetaViewModel)">
+            <summary>
+            Atualiza os dados de uma coleta com base do id fornecido.
+            </summary>
+            <param name="coleta">Dados da coleta do tipo CaminhaoViewModel.</param>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.BuscarTodasRotas">
+            <summary>
+            Busca todas as rotas.
+            </summary>
+            <returns>Uma ação que retorna uma lista de RotaViewModel.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.CadastrarRota(TrashCollectionAPI.ViewModel.RotaViewModel)">
+            <summary>
+            Agenda uma nova coleta com base nos dados fornecidos no RotaViewModel.
+            </summary>
+            <param name="viewModel">O modelo de visualização contendo os dados da rota.</param>
+            <returns>Uma ação que retorna o resultado da criação da rota.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.BuscarRota(System.Int32)">
+            <summary>
+            Busca uma rota com base do id fornecido.
+            </summary>
+            <param name="id">id da rota que deseja buscar.</param>
+            <returns>Retorna uma rota.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.DeleteColeta(System.Int32)">
+            <summary>
+            Exclui uma rota com base do id fornecido.
+            </summary>
+            <param name="id">id do rota que deseja excluir.</param>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.RotaController.BuscarTodasRotas(System.Int32)">
+            <summary>
+            Busca as rota com base do id fornecido.
+            </summary>
+            <param name="id">id da coleta que deseja buscar as rotas.</param>
+            <returns>Retorna uma rota.</returns>
         </member>
         <member name="M:TrashCollectionAPI.Controllers.StatusController.CadastrarStatus(TrashCollectionAPI.ViewModel.StatusViewModel)">
             <summary>
@@ -78,6 +133,13 @@
             <param name="id">id do status que deseja excluir.</param>
             <returns>200</returns>
         </member>
+        <member name="M:TrashCollectionAPI.Controllers.UsuarioController.CadastrarUsuario(TrashCollectionAPI.ViewModel.UserViewModel)">
+            <summary>
+            Cria um novo registro de usuario
+            </summary>
+            <param name="usuario">Dados do usuario que deseja cadastrar.</param>
+            <returns>201</returns>
+        </member>
         <member name="T:TrashCollectionAPI.Migrations.initialMigration">
             <inheritdoc />
         </member>
@@ -100,6 +162,18 @@
             <inheritdoc />
         </member>
         <member name="M:TrashCollectionAPI.Migrations.change.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TrashCollectionAPI.Migrations.createTableUser">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.createTableUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

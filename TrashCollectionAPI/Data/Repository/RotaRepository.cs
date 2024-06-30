@@ -1,32 +1,43 @@
-﻿using TrashCollectionAPI.Models;
+﻿using TrashCollectionAPI.Data.Contexts;
+using TrashCollectionAPI.Models;
 
 namespace TrashCollectionAPI.Data.Repository
 {
     public class RotaRepository : IRotaRepository
     {
+        private readonly DatabaseContext _context;
+
+        public RotaRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
         public void AddNewRota(RotaModel rota)
         {
-            throw new NotImplementedException();
+            _context.Add(rota);
+            _context.SaveChanges();
         }
 
-        public void DeleteRota(int id)
+        public void DeleteRota(RotaModel rota)
         {
-            throw new NotImplementedException();
+            _context.Remove(rota);
+            _context.SaveChanges();
         }
 
-        public IEnumerable<RotaModel> GetAllRotas()
+        public IEnumerable<RotaModel> GetAllRotas() => _context.Rota.ToList();
+
+        public IEnumerable<RotaModel> GetAllRotas(int idColeta)
         {
-            throw new NotImplementedException();
+            return _context.Rota
+               .Where(r => r.IdColeta == idColeta)
+               .ToList();
         }
 
-        public RotaModel GetRotaById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public RotaModel GetRotaById(int id) => _context.Rota.Find(id);
 
         public void UpdateRota(RotaModel rota)
         {
-            throw new NotImplementedException();
+            _context.Update(rota);
+            _context.SaveChanges();
         }
     }
 }

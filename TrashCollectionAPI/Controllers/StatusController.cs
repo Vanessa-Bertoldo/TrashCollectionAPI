@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TrashCollectionAPI.Data.Contexts;
 using TrashCollectionAPI.Models;
 using TrashCollectionAPI.Services;
 using TrashCollectionAPI.ViewModel;
@@ -9,11 +11,12 @@ namespace TrashCollectionAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StatusController : ControllerBase
     {
         private readonly IStatusService _service;
         private readonly IMapper _mapper;
-
+        public DatabaseContext Context { get; set; }
         public StatusController(IStatusService service, IMapper mapper)
         {
             _service = service;
@@ -70,7 +73,7 @@ namespace TrashCollectionAPI.Controllers
         /// <param name="id">id do status que deseja excluir.</param>
         /// <returns>200</returns>
         [HttpDelete("DeleteStatus/{id}")]
-        public ActionResult DeleteColeta(int id)
+        public ActionResult DeleteColeta([FromRoute] int id)
         {
             _service.DeleteStatus(id);
             return Ok("Status excluido com sucesso");
