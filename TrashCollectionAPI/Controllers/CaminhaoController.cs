@@ -47,13 +47,19 @@ namespace TrashCollectionAPI.Controllers
         [HttpGet("BuscarCaminhao{Id}")]
         public ActionResult<CaminhaoViewModel> BuscarCaminhao([FromRoute] int Id)
         {
-            var Caminhao = _service.GetCaminhaoById(Id);
-            if (Caminhao != null)
+            if (Id < 0)
             {
-                var viewModel = _mapper.Map<CaminhaoViewModel>(Caminhao);
-                return Ok(viewModel);
+                return BadRequest("Id não pode ser negativo.");
             }
-            return BadRequest();
+
+            var Caminhao = _service.GetCaminhaoById(Id);
+            if (Caminhao == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = _mapper.Map<CaminhaoViewModel>(Caminhao);
+            return Ok(viewModel);
         }
 
         /// <summary>
@@ -69,5 +75,16 @@ namespace TrashCollectionAPI.Controllers
             return CreatedAtAction(nameof(BuscaTodosCaminhoes), new { id = Caminhao.IdCaminhao }, ViewModel);
         }
 
+        /// <summary>
+        /// Exclui um caminhao com base do id fornecido.
+        /// </summary>
+        /// <param name="id">id do caminhao que deseja excluir.</param>
+        /// <returns>200</returns>
+        [HttpDelete("DeletarCaminhao{Id}")]
+        public ActionResult DeletarCaminhao([FromBody] int id)
+        {
+            _service.DeleteCaminhao(id);
+            return Ok("Caminhao excluido com sucesso");
+        }
     }
 }

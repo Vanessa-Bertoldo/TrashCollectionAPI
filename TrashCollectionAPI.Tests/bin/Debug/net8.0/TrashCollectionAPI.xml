@@ -6,9 +6,30 @@
     <members>
         <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.BuscaTodosCaminhoes">
             <summary>
-            Busca todas as coletas agendadas.
+            Busca todas os caminhoes.
             </summary>
-            <returns>Uma ação que retorna uma lista de ColetaViewModel.</returns>
+            <returns>Uma ação que retorna uma lista de CaminhaoViewModel.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.BuscarCaminhao(System.Int32)">
+            <summary>
+            Busca um caminhao com base do id fornecido.
+            </summary>
+            <param name="Id">id do caminhao que deseja buscar.</param>
+            <returns>Retorna um caminhao.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.CadastrarCaminhao(TrashCollectionAPI.ViewModel.CaminhaoViewModel)">
+            <summary>
+            Cadastra um caminhao.
+            </summary>
+            <param name="ViewModel">Dados para criar um registro de um novo caminhão.</param>
+            <returns>Retorna o caminhao criado.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.DeletarCaminhao(System.Int32)">
+            <summary>
+            Exclui um caminhao com base do id fornecido.
+            </summary>
+            <param name="id">id do caminhao que deseja excluir.</param>
+            <returns>200</returns>
         </member>
         <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscaTodasColeta">
             <summary>
@@ -36,6 +57,33 @@
             </summary>
             <param name="id">id da coleta que deseja deletar.</param>
             <returns>Retorna status 200.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.CadastrarStatus(TrashCollectionAPI.ViewModel.StatusViewModel)">
+            <summary>
+            Cria um novo registro de status
+            </summary>
+            <param name="viewModel">Dados do status que deseja inserir.</param>
+            <returns>201</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.BuscarTodosStatus">
+            <summary>
+            Lista todos os status
+            </summary>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.BuscarStatus(System.Int32)">
+            <summary>
+            Busca um status com base do id fornecido.
+            </summary>
+            <param name="id">id do status que deseja buscar.</param>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.DeleteColeta(System.Int32)">
+            <summary>
+            Exclui um status com base do id fornecido.
+            </summary>
+            <param name="id">id do status que deseja excluir.</param>
+            <returns>200</returns>
         </member>
         <member name="T:TrashCollectionAPI.Migrations.initialMigration">
             <inheritdoc />

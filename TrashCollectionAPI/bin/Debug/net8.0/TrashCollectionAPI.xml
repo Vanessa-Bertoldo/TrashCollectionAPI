@@ -24,6 +24,13 @@
             <param name="ViewModel">Dados para criar um registro de um novo caminhão.</param>
             <returns>Retorna o caminhao criado.</returns>
         </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.DeletarCaminhao(System.Int32)">
+            <summary>
+            Exclui um caminhao com base do id fornecido.
+            </summary>
+            <param name="id">id do caminhao que deseja excluir.</param>
+            <returns>200</returns>
+        </member>
         <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscaTodasColeta">
             <summary>
             Busca todas as coletas agendadas.

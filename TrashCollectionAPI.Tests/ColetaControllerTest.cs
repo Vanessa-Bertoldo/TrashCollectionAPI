@@ -1,115 +1,128 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Moq;
+using System.Collections.Generic;
 using TrashCollectionAPI.Controllers;
-using TrashCollectionAPI.Data.Contexts;
 using TrashCollectionAPI.Models;
 using TrashCollectionAPI.Services;
 using TrashCollectionAPI.ViewModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Xunit;
+using Microsoft.AspNetCore.Mvc;
 
-namespace TrashCollectionAPI.Tests
+public class ColetaControllerTest
 {
-    public class ColetaControllerTest
+    private readonly Mock<IColetaService> _mockColetaService;
+    private readonly Mock<IMapper> _mockMapper;
+    private readonly ColetaController _controller;
+
+    public ColetaControllerTest()
     {
-        private readonly Mock<IColetaService> _mockService;
-        private readonly Mock<IMapper> _mockMapper;
-        private readonly ColetaController _controller;
+        _mockColetaService = new Mock<IColetaService>();
+        _mockMapper = new Mock<IMapper>();
 
-        public ColetaControllerTest()
-        {
-            _mockService = new Mock<IColetaService>();
-            _mockMapper = new Mock<IMapper>();
-            _controller = new ColetaController(_mockService.Object, _mockMapper.Object);
-
-            ConfigureMockService();
-            ConfigureMockMapper();
-        }
-
-        private void ConfigureMockService()
-        {
-            var coletas = new List<ColetaModel>
-        {
-            new ColetaModel { IdColeta = 1, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() },
-            new ColetaModel { IdColeta = 2, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "BH", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() },
-        };
-            _mockService.Setup(s => s.GetAllColetas()).Returns(coletas);
-
-            _mockService.Setup(s => s.AddNewColeta(It.IsAny<ColetaModel>()))
-                        .Callback<ColetaModel>(coleta =>
-                        {
-                            coleta.IdColeta = coletas.Count + 1; 
-                            coletas.Add(coleta);
-                        });
-        }
-
-        private void ConfigureMockMapper()
-        {
-            _mockMapper.Setup(m => m.Map<IEnumerable<ColetaViewModel>>(It.IsAny<IEnumerable<ColetaModel>>()))
-                       .Returns((IEnumerable<ColetaModel> coletas) =>
-                       {
-                           return coletas.Select(coleta => new ColetaViewModel
-                           {
-                               IdColeta = coleta.IdColeta,
-                               NumeroVolume = coleta.NumeroVolume,
-                               DataRegistro = coleta.DataRegistro,
-                           });
-                       });
-
-            _mockMapper.Setup(m => m.Map<ColetaModel>(It.IsAny<ColetaViewModel>()))
-                       .Returns((ColetaViewModel viewModel) =>
-                       {
-                           return new ColetaModel
-                           {
-                               IdColeta = viewModel.IdColeta,
-                               NumeroVolume = viewModel.NumeroVolume,
-                               DataRegistro = viewModel.DataRegistro,
-                           };
-                       });
-        }
-
-        [Fact]
-        public void AgendarColeta_ReturnsCreatedAtAction() 
-        {
-            var viewModel = new ColetaViewModel
-            {
-                IdColeta = 3, 
-                NumeroVolume = 25.0,
-                DataRegistro = DateTime.Now,
-            };
-
-            var result = _controller.AgendarColeta(viewModel);
-
-            var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
-            Assert.Equal(nameof(_controller.BuscaTodasColeta), createdAtActionResult.ActionName);
-            Assert.Equal(viewModel.IdColeta, createdAtActionResult.RouteValues["id"]);
-        }
-
-        [Fact]
-        public void DeleteColeta_ReturnsNoContentResult()
-        {
-            int coletaId = 1;
-            var coleta = new ColetaModel { IdColeta = coletaId, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() };
-            _mockService.Setup(s => s.GetColetaById(coletaId)).Returns(coleta);
-
-            var result = _controller.DeleteColeta(coletaId);
-
-            Assert.IsType<NoContentResult>(result);
-        }
-
-        [Fact]
-        public void DeleteColeta_ReturnsNotFoundResult_WhenColetaNotFound()
-        {
-            int coletaId = 999; 
-            _mockService.Setup(s => s.GetColetaById(coletaId)).Returns((ColetaModel)null);
-
-            var result = _controller.DeleteColeta(coletaId);
-
-            Assert.IsType<NotFoundResult>(result);
-        }
-
+        _controller = new ColetaController(_mockColetaService.Object, _mockMapper.Object);
     }
 
+    [Fact]
+    public void BuscaTodasColeta_ReturnsOkObjectResult()
+    {
+        // Arrange
+        var coletasList = new List<ColetaModel> { new ColetaModel { IdColeta = 1, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() } };
+        var viewModelList = new List<ColetaViewModel> { new ColetaViewModel { IdColeta = 1, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaViewModel>() } };
 
+        _mockColetaService.Setup(s => s.GetAllColetas()).Returns(coletasList);
+        _mockMapper.Setup(m => m.Map<IEnumerable<ColetaViewModel>>(coletasList)).Returns(viewModelList);
+
+        // Act
+        var result = _controller.BuscaTodasColeta();
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var returnValue = Assert.IsType<List<ColetaViewModel>>(okResult.Value);
+        Assert.Equal(viewModelList, returnValue);
+    }
+
+    [Fact]
+    public void AgendarColeta_ReturnsCreatedAtActionResult()
+    {
+        // Arrange
+        var viewModel = new ColetaViewModel { IdColeta = 1, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaViewModel>() };
+        var coletaModel = new ColetaModel { IdColeta = 1, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() };
+
+        _mockMapper.Setup(m => m.Map<ColetaModel>(viewModel)).Returns(coletaModel);
+        _mockColetaService.Setup(s => s.AddNewColeta(coletaModel)).Verifiable();
+
+        // Act
+        var result = _controller.AgendarColeta(viewModel);
+
+        // Assert
+        var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
+        Assert.Equal(nameof(_controller.BuscaTodasColeta), createdAtActionResult.ActionName);
+        Assert.Equal(coletaModel.IdColeta, createdAtActionResult.RouteValues["id"]);
+        Assert.Equal(viewModel, createdAtActionResult.Value);
+    }
+
+    [Fact]
+    public void BuscarColeta_ColetaNaoEncontrada_ReturnsNotFound()
+    {
+        // Arrange
+        var coletaId = 1;
+        _mockColetaService.Setup(s => s.GetColetaById(coletaId)).Returns((ColetaModel)null);
+
+        // Act
+        var result = _controller.BuscarColeta(coletaId);
+
+        // Assert
+        Assert.IsType<NotFoundResult>(result.Result);
+    }
+
+    [Fact]
+    public void BuscarColeta_ColetaEncontrada_ReturnsOk()
+    {
+        // Arrange
+        var coletaId = 1;
+        var coletaModel = new ColetaModel { IdColeta = coletaId, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() };
+        var viewModel = new ColetaViewModel { IdColeta = coletaId, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaViewModel>() };
+
+        _mockColetaService.Setup(s => s.GetColetaById(coletaId)).Returns(coletaModel);
+        _mockMapper.Setup(m => m.Map<ColetaViewModel>(coletaModel)).Returns(viewModel);
+
+        // Act
+        var result = _controller.BuscarColeta(coletaId);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var returnValue = Assert.IsType<ColetaViewModel>(okResult.Value);
+        Assert.Equal(viewModel, returnValue);
+    }
+
+    [Fact]
+    public void DeleteColeta_ColetaNaoEncontrada_ReturnsNotFound()
+    {
+        // Arrange
+        var coletaId = 1;
+        _mockColetaService.Setup(s => s.GetColetaById(coletaId)).Returns((ColetaModel)null);
+
+        // Act
+        var result = _controller.DeleteColeta(coletaId);
+
+        // Assert
+        Assert.IsType<NotFoundResult>(result);
+    }
+
+    [Fact]
+    public void DeleteColeta_ColetaEncontrada_ReturnsNoContent()
+    {
+        // Arrange
+        var coletaId = 1;
+        var coletaModel = new ColetaModel { IdColeta = coletaId, NumeroVolume = 20.5, DataRegistro = DateTime.Now, NomeBairro = "Centro", DataColeta = DateTime.Now, Rotas = new List<RotaModel>() };
+
+        _mockColetaService.Setup(s => s.GetColetaById(coletaId)).Returns(coletaModel);
+        _mockColetaService.Setup(s => s.DeleteColeta(coletaId)).Verifiable();
+
+        // Act
+        var result = _controller.DeleteColeta(coletaId);
+
+        // Assert
+        Assert.IsType<NoContentResult>(result);
+    }
 }
