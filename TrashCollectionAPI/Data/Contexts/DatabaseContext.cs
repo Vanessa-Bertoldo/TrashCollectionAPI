@@ -45,11 +45,6 @@ namespace TrashCollectionAPI.Data.Contexts
                 entity.HasKey(e => e.IdRota);
                 entity.Property(e => e.NomeRota).IsRequired();
                 entity.Property(e => e.DescricaoRota).IsRequired();
-
-                entity.HasOne(r => r.Coleta)
-                      .WithMany(c => c.Rotas)
-                      .HasForeignKey(r => r.IdColeta)
-                      .IsRequired();
             });
 
             modelBuilder.Entity<StatusModel>(entity =>

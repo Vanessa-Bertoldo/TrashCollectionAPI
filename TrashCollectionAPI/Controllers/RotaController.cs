@@ -28,7 +28,7 @@ namespace TrashCollectionAPI.Controllers
         public ActionResult<IEnumerable<RotaViewModel>> BuscarTodasRotas()
         {
             var rotas = _service.GetAllRotas();
-            var viewModelList = _mapper.Map<RotaViewModel>(rotas);
+            var viewModelList = _mapper.Map<IEnumerable<RotaViewModel>>(rotas);
             return Ok(viewModelList);
         }
 
