@@ -87,12 +87,17 @@ namespace TrashCollectionAPI.Controllers
         /// </summary>
         /// <param name="coleta">Dados da coleta do tipo CaminhaoViewModel.</param>
         /// <returns>200</returns>
-        [HttpPut]
-        public ActionResult AtualizarColeta([FromBody] ColetaViewModel coleta)
+        [HttpPut("{id}")]
+        public ActionResult AtualizarColeta([FromBody] int id, [FromBody] ColetaViewModel coleta)
         {
-            var coletaModel = _mapper.Map<ColetaModel>(coleta);
-            _service.UpdateColeta(coletaModel);
-            return Ok("Os dados foram atualizados com sucesso");
+            var exists = _service.GetColetaById(id);
+            if (exists != null)
+            {
+                var coletaModel = _mapper.Map<ColetaModel>(coleta);
+                _service.UpdateColeta(coletaModel);
+                return Ok("Os dados foram atualizados com sucesso");
+            }
+            return NotFound();
         }
     }
 }

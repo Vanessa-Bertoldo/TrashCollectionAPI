@@ -92,12 +92,17 @@ namespace TrashCollectionAPI.Controllers
         /// </summary>
         /// <param name="caminhao">Dados do caminhao do tipo CaminhaoViewModel.</param>
         /// <returns>200</returns>
-        [HttpPut]
-        public ActionResult AtualizarCaminhao([FromBody] CaminhaoViewModel caminhao)
+        [HttpPut("{id}")]
+        public ActionResult AtualizarCaminhao([FromRoute]int id,[FromBody] CaminhaoViewModel caminhao)
         {
-            var caminhaoModel = _mapper.Map<CaminhaoModel>(caminhao);
-            _service.UpdateCaminhao(caminhaoModel);
-            return Ok("Os dados foram atualizados com sucesso");
+            var exists = _service.GetCaminhaoById(id);
+            if (exists != null)
+            {
+                var caminhaoModel = _mapper.Map<CaminhaoModel>(caminhao);
+                _service.UpdateCaminhao(caminhaoModel);
+                return Ok("Os dados foram atualizados com sucesso");
+            }
+            return NotFound();
         }
     }
 }

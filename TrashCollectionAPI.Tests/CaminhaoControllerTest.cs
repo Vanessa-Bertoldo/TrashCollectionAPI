@@ -140,31 +140,47 @@ public class CaminhaoControllerTest
     [Fact]
     public void AtualizarCaminhao_ReturnsOk()
     {
+        int idCaminhao = 1;
         var caminhaoViewModel = new CaminhaoViewModel
         {
-            IdCaminhao = 1,
-            Modelo = "Modelo A",
-            NumeroCapacidade = 200,
-            HNumeroMaxCapacidade = 150,
+            IdCaminhao = idCaminhao,
+            Modelo = "Modelo Teste",
+            NumeroCapacidade = 10,
+            HNumeroMaxCapacidade = 100,
             IdStatus = 1
         };
 
         var caminhaoModel = new CaminhaoModel
         {
-            IdCaminhao = 1,
-            Modelo = "Modelo A",
-            NumeroCapacidade = 200,
-            HNumeroMaxCapacidade = 150,
-            Status = new StatusModel { IdStatus = 1 }
+            IdCaminhao = idCaminhao,
+            Modelo = "Modelo Teste",
+            NumeroCapacidade = 10,
+            HNumeroMaxCapacidade = 100,
+            IdStatus = 1
         };
 
+        _mockCaminhaoService.Setup(s => s.GetCaminhaoById(idCaminhao)).Returns(caminhaoModel);
         _mockMapper.Setup(m => m.Map<CaminhaoModel>(caminhaoViewModel)).Returns(caminhaoModel);
 
         // Act
-        var result = _controller.AtualizarCaminhao(caminhaoViewModel);
+        var result = _controller.AtualizarCaminhao(idCaminhao, caminhaoViewModel);
 
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal("Os dados foram atualizados com sucesso", okResult.Value);
+    }
+
+    [Fact]
+    public void AtualizarCaminhao_ReturnsNotFound()
+    {
+        int idCaminhao = 1;
+        _mockCaminhaoService.Setup(s => s.GetCaminhaoById(idCaminhao)).Returns((CaminhaoModel)null);
+
+        // Act
+        var result = _controller.AtualizarCaminhao(idCaminhao, new CaminhaoViewModel());
+
+        // Assert
+        var notFoundResult = Assert.IsType<NotFoundResult>(result);
+        Assert.Equal(404, notFoundResult.StatusCode);
     }
 }

@@ -31,7 +31,7 @@
             <param name="id">id do caminhao que deseja excluir.</param>
             <returns>200</returns>
         </member>
-        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.AtualizarCaminhao(TrashCollectionAPI.ViewModel.CaminhaoViewModel)">
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.AtualizarCaminhao(System.Int32,TrashCollectionAPI.ViewModel.CaminhaoViewModel)">
             <summary>
             Atualiza os dados de um caminhao com base do id fornecido.
             </summary>
@@ -65,7 +65,7 @@
             <param name="id">id da coleta que deseja deletar.</param>
             <returns>Retorna status 200.</returns>
         </member>
-        <member name="M:TrashCollectionAPI.Controllers.ColetaController.AtualizarColeta(TrashCollectionAPI.ViewModel.ColetaViewModel)">
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.AtualizarColeta(System.Int32,TrashCollectionAPI.ViewModel.ColetaViewModel)">
             <summary>
             Atualiza os dados de uma coleta com base do id fornecido.
             </summary>
