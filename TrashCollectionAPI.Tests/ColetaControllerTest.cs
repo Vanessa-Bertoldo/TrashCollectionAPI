@@ -70,7 +70,7 @@ namespace TrashCollectionAPI.Tests
         }
 
         [Fact]
-        public void AgendarColeta_ReturnsCreatedAtAction()
+        public void AgendarColeta_ReturnsCreatedAtAction() 
         {
             // Arrange
             var viewModel = new ColetaViewModel

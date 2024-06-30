@@ -8,7 +8,7 @@ namespace TrashCollectionAPI.Data.Repository
         ColetaModel GetColetaById(int id);
         void AddNewColeta(ColetaModel coleta);
         void UpdateColeta(ColetaModel coleta);
-        void DeleteColeta(ColetaModel coleta);
+        void DeleteColeta(ColetaModel colet);
 
 
     }
