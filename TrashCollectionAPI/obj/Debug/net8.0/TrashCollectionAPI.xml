@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TrashCollectionAPI</name>
+    </assembly>
+    <members>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.BuscaTodosCaminhoes">
+            <summary>
+            Busca todas os caminhoes.
+            </summary>
+            <returns>Uma ação que retorna uma lista de CaminhaoViewModel.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.BuscarCaminhao(System.Int32)">
+            <summary>
+            Busca um caminhao com base do id fornecido.
+            </summary>
+            <param name="Id">id do caminhao que deseja buscar.</param>
+            <returns>Retorna um caminhao.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.CadastrarCaminhao(TrashCollectionAPI.ViewModel.CaminhaoViewModel)">
+            <summary>
+            Cadastra um caminhao.
+            </summary>
+            <param name="ViewModel">Dados para criar um registro de um novo caminhão.</param>
+            <returns>Retorna o caminhao criado.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscaTodasColeta">
+            <summary>
+            Busca todas as coletas agendadas.
+            </summary>
+            <returns>Uma ação que retorna uma lista de ColetaViewModel.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.AgendarColeta(TrashCollectionAPI.ViewModel.ColetaViewModel)">
+            <summary>
+            Agenda uma nova coleta com base nos dados fornecidos no ColetaViewModel.
+            </summary>
+            <param name="viewModel">O modelo de visualização contendo os dados da coleta.</param>
+            <returns>Uma ação que retorna o resultado da criação da coleta.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscarColeta(System.Int32)">
+            <summary>
+            Busca uma coleta com base do id fornecido.
+            </summary>
+            <param name="id">id da coleta que deseja buscar.</param>
+            <returns>Retorna uma coleta.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.DeleteColeta(System.Int32)">
+            <summary>
+            Efetua a deleção de uma coleta com base do id fornecido.
+            </summary>
+            <param name="id">id da coleta que deseja deletar.</param>
+            <returns>Retorna status 200.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.CadastrarStatus(TrashCollectionAPI.ViewModel.StatusViewModel)">
+            <summary>
+            Cria um novo registro de status
+            </summary>
+            <param name="viewModel">Dados do status que deseja inserir.</param>
+            <returns>201</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.BuscarTodosStatus">
+            <summary>
+            Lista todos os status
+            </summary>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.BuscarStatus(System.Int32)">
+            <summary>
+            Busca um status com base do id fornecido.
+            </summary>
+            <param name="id">id do status que deseja buscar.</param>
+            <returns>200</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.StatusController.DeleteColeta(System.Int32)">
+            <summary>
+            Exclui um status com base do id fornecido.
+            </summary>
+            <param name="id">id do status que deseja excluir.</param>
+            <returns>200</returns>
+        </member>
+        <member name="T:TrashCollectionAPI.Migrations.initialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.initialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.initialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.initialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TrashCollectionAPI.Migrations.change">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

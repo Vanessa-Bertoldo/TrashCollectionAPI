@@ -29,8 +29,8 @@ builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
 #region Services
 builder.Services.AddScoped<IColetaService, ColetaService>();
 //builder.Services.AddScoped<IRotaService, RotaService>();
-//builder.Services.AddScoped<IStatusService, StatusService>();
-//builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
+builder.Services.AddScoped<IStatusService, StatusService>();
+builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
 #endregion
 
 #region AutoMapper

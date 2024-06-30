@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TrashCollectionAPI.Data.Contexts;
 using TrashCollectionAPI.Models;
 using TrashCollectionAPI.Services;
@@ -14,12 +15,6 @@ namespace TrashCollectionAPI.Controllers
     {
         private readonly IColetaService _service;
         private readonly IMapper _mapper;
-        private DatabaseContext @object;
-
-        public ColetaController(DatabaseContext @object)
-        {
-            this.@object = @object;
-        }
 
         public ColetaController(IColetaService service, IMapper mapper)
         {
@@ -27,27 +22,64 @@ namespace TrashCollectionAPI.Controllers
             _mapper = mapper;
         }
 
-
-        [HttpGet]
-        public ActionResult<IEnumerable<ColetaViewModel>> Get()
+        /// <summary>
+        /// Busca todas as coletas agendadas.
+        /// </summary>
+        /// <returns>Uma ação que retorna uma lista de ColetaViewModel.</returns>
+        [HttpGet("BuscaTodasColeta")]
+        public ActionResult<IEnumerable<ColetaViewModel>> BuscaTodasColeta()
         {
             var coletas = _service.GetAllColetas();
             var viewModelList = _mapper.Map<IEnumerable<ColetaViewModel>>(coletas);
             return Ok(viewModelList);
         }
 
-        [HttpPost]
-        public ActionResult Post([FromBody] ColetaViewModel viewModel)
+        /// <summary>
+        /// Agenda uma nova coleta com base nos dados fornecidos no ColetaViewModel.
+        /// </summary>
+        /// <param name="viewModel">O modelo de visualização contendo os dados da coleta.</param>
+        /// <returns>Uma ação que retorna o resultado da criação da coleta.</returns>
+        [HttpPost("AgendarColeta")]
+        public ActionResult AgendarColeta([FromBody] ColetaViewModel ViewModel)
         {
-            var coleta = _mapper.Map<ColetaModel>(viewModel);
+            var Coleta = _mapper.Map<ColetaModel>(ViewModel);
+            _service.AddNewColeta(Coleta);
+            return CreatedAtAction(nameof(BuscaTodasColeta), new { id = Coleta.IdColeta }, ViewModel);
+        }
+
+        /// <summary>
+        /// Busca uma coleta com base do id fornecido.
+        /// </summary>
+        /// <param name="id">id da coleta que deseja buscar.</param>
+        /// <returns>Retorna uma coleta.</returns>
+        [HttpGet("BuscarColeta{Id}")]
+        public ActionResult<ColetaViewModel> BuscarColeta([FromRoute] int Id)
+        {
+            var coleta = _service.GetColetaById(Id);
+            if (coleta == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = _mapper.Map<ColetaViewModel>(coleta);
+            return Ok(viewModel);
+        }
+
+        /// <summary>
+        /// Efetua a deleção de uma coleta com base do id fornecido.
+        /// </summary>
+        /// <param name="id">id da coleta que deseja deletar.</param>
+        /// <returns>Retorna status 200.</returns>
+        [HttpDelete("DeleteColeta/{id}")]
+        public ActionResult DeleteColeta(int id)
+        {
+            var coleta = _service.GetColetaById(id);
             if (coleta != null)
             {
-                _service.AddNewColeta(coleta);
-                return CreatedAtAction(nameof(Get), new { id = coleta.IdColeta }, viewModel);
+                _service.DeleteColeta(id);
+                return NoContent();
             }
             return NotFound();
         }
-
-
     }
 }

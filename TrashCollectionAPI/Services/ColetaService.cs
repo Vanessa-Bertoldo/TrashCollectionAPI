@@ -11,12 +11,12 @@ namespace TrashCollectionAPI.Services
             _repository = repository;
         }
         public void AddNewColeta(ColetaModel coleta) => _repository.AddNewColeta(coleta);
-        public void DeleteColeta(int id)
+        public void DeleteColeta(int Id)
         {
-           var coleta = _repository.GetColetaById(id);
+           var coleta = _repository.GetColetaById(Id);
            if(coleta != null)
             {
-                //_repository.DeleteColeta(coleta);
+                _repository.DeleteColeta(coleta);
             }
         }
 

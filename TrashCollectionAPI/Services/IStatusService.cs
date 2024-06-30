@@ -4,10 +4,9 @@ namespace TrashCollectionAPI.Services
 {
     public interface IStatusService
     {
-        IEnumerable<StatusModel> GetAllStatuses();
+        IEnumerable<StatusModel> GetAllStatus();
         StatusModel GetStatusById(int id);
         void AddNewStatus(StatusModel status);
-        void UpdateStatus(StatusModel status);
         void DeleteStatus(int id);
     }
 }

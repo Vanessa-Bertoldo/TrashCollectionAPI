@@ -24,9 +24,11 @@ namespace TrashCollectionAPI.Data.Repository
             _context.SaveChanges();
         }
 
-        public IEnumerable<ColetaModel> GetAllColetas() => _context.Coleta.ToList();
+        public IEnumerable<ColetaModel> GetAllColetas() => _context.Coleta.Include(x => x.Rotas).ToList();
 
-        public ColetaModel GetColetaById(int id) => _context.Coleta.Find(id);
+        public ColetaModel GetColetaById(int id) => _context.Coleta
+                .Include(x => x.Rotas)
+                .FirstOrDefault(x => x.IdColeta == id);
 
         public void UpdateColeta(ColetaModel coleta)
         {

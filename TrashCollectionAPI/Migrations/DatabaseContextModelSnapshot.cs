@@ -122,7 +122,7 @@ namespace TrashCollectionAPI.Migrations
             modelBuilder.Entity("TrashCollectionAPI.Models.CaminhaoModel", b =>
                 {
                     b.HasOne("TrashCollectionAPI.Models.StatusModel", "Status")
-                        .WithMany("Caminhoes")
+                        .WithMany()
                         .HasForeignKey("IdStatus")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -144,11 +144,6 @@ namespace TrashCollectionAPI.Migrations
             modelBuilder.Entity("TrashCollectionAPI.Models.ColetaModel", b =>
                 {
                     b.Navigation("Rotas");
-                });
-
-            modelBuilder.Entity("TrashCollectionAPI.Models.StatusModel", b =>
-                {
-                    b.Navigation("Caminhoes");
                 });
 #pragma warning restore 612, 618
         }

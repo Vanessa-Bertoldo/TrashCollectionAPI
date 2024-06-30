@@ -14,15 +14,16 @@ namespace TrashCollectionAPI.Data.Contexts
         {
             modelBuilder.Entity<CaminhaoModel>(entity =>
             {
-                entity.ToTable("Caminhao");
-                entity.HasKey(e => e.IdCaminhao);
-                entity.Property(e => e.HNumeroMaxCapacidade).IsRequired();
-                entity.HasOne(e => e.Status)
-                      .WithMany(s => s.Caminhoes)
-                      .HasForeignKey(e => e.IdStatus)
-                      .IsRequired();
-            });
+                entity.ToTable("Caminhao"); 
+                entity.HasKey(e => e.IdCaminhao); 
 
+                entity.Property(e => e.HNumeroMaxCapacidade).IsRequired(); 
+
+                entity.HasOne(e => e.Status) 
+                      .WithMany() 
+                      .HasForeignKey(e => e.IdStatus) 
+                      .IsRequired(); 
+            });
             modelBuilder.Entity<ColetaModel>(entity =>
             {
                 entity.ToTable("Coleta");
@@ -53,12 +54,9 @@ namespace TrashCollectionAPI.Data.Contexts
 
             modelBuilder.Entity<StatusModel>(entity =>
             {
-                entity.ToTable("Status");
+                entity.ToTable("Status"); 
                 entity.HasKey(e => e.IdStatus);
-                entity.Property(e => e.NomeStatus).IsRequired();
-                entity.HasMany(s => s.Caminhoes)
-                      .WithOne(e => e.Status)
-                      .HasForeignKey(e => e.IdStatus);
+               
             });
         }
 

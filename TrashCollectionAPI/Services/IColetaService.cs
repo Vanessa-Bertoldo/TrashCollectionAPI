@@ -8,6 +8,6 @@ namespace TrashCollectionAPI.Services
         ColetaModel GetColetaById(int id);
         void AddNewColeta(ColetaModel coleta);
         void UpdateColeta(ColetaModel coleta);
-        void DeleteColeta(int id);
+        void DeleteColeta(int Id);
     }
 }

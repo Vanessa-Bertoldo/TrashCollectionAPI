@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6E95GkODZsVtDXZPvb/zcbPe3pYLMXJqc2Y7iK7UYDOGmtZB5erhol9CnKioGjj5CGYSiNYUmXRak68bVumDuw==",
+  "dgSpecHash": "E353KgyCDoCcnfg++ZRmwJp0E+fHukVuO5Obz/vF42HIFt87eLbohkZTP1ASACgdt9OTVHa56uW2lLEqnHQw1g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI.Tests\\TrashCollectionAPI.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Z\\Documents\\projetosFaculdade\\TrashCollectionAPI\\TrashCollectionAPI.Tests\\TrashCollectionAPI.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Z\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Z\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",

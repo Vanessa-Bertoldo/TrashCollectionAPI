@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TrashCollectionAPI</name>
+    </assembly>
+    <members>
+        <member name="M:TrashCollectionAPI.Controllers.CaminhaoController.BuscaTodosCaminhoes">
+            <summary>
+            Busca todas as coletas agendadas.
+            </summary>
+            <returns>Uma ação que retorna uma lista de ColetaViewModel.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscaTodasColeta">
+            <summary>
+            Busca todas as coletas agendadas.
+            </summary>
+            <returns>Uma ação que retorna uma lista de ColetaViewModel.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.AgendarColeta(TrashCollectionAPI.ViewModel.ColetaViewModel)">
+            <summary>
+            Agenda uma nova coleta com base nos dados fornecidos no ColetaViewModel.
+            </summary>
+            <param name="viewModel">O modelo de visualização contendo os dados da coleta.</param>
+            <returns>Uma ação que retorna o resultado da criação da coleta.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.BuscarColeta(System.Int32)">
+            <summary>
+            Busca uma coleta com base do id fornecido.
+            </summary>
+            <param name="id">id da coleta que deseja buscar.</param>
+            <returns>Retorna uma coleta.</returns>
+        </member>
+        <member name="M:TrashCollectionAPI.Controllers.ColetaController.DeleteColeta(System.Int32)">
+            <summary>
+            Efetua a deleção de uma coleta com base do id fornecido.
+            </summary>
+            <param name="id">id da coleta que deseja deletar.</param>
+            <returns>Retorna status 200.</returns>
+        </member>
+        <member name="T:TrashCollectionAPI.Migrations.initialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.initialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.initialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.initialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TrashCollectionAPI.Migrations.change">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TrashCollectionAPI.Migrations.change.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
