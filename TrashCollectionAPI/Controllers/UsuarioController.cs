@@ -33,7 +33,11 @@ namespace TrashCollectionAPI.Controllers
             return Created();
         }
 
-
+        /// <summary>
+        /// Busca o registro de um usuario
+        /// </summary>
+        /// <param name="auth">Busca o usuario de login.</param>
+        /// <returns>200</returns>
         [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginViewModel auth)
         {

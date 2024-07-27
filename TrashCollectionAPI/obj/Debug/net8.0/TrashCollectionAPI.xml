@@ -140,6 +140,13 @@
             <param name="usuario">Dados do usuario que deseja cadastrar.</param>
             <returns>201</returns>
         </member>
+        <member name="M:TrashCollectionAPI.Controllers.UsuarioController.Login(TrashCollectionAPI.ViewModel.LoginViewModel)">
+            <summary>
+            Busca o registro de um usuario
+            </summary>
+            <param name="auth">Busca o usuario de login.</param>
+            <returns>200</returns>
+        </member>
         <member name="T:TrashCollectionAPI.Migrations.initialMigration">
             <inheritdoc />
         </member>

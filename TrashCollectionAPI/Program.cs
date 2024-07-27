@@ -2,17 +2,19 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 using System.Text;
-using TrashCollectionAPI.Data;
 using TrashCollectionAPI.Data.Contexts;
 using TrashCollectionAPI.Data.Repository;
-using TrashCollectionAPI.Models;
+using TrashCollectionAPI.Data;
 using TrashCollectionAPI.Services;
+using TrashCollectionAPI.Models;
 using TrashCollectionAPI.ViewModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Adicionar serviços ao contêiner
 #region INICIALIZANDO O BANCO DE DADOS
 var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
 builder.Services.AddDbContext<DatabaseContext>(
@@ -34,6 +36,7 @@ builder.Services.AddScoped<IRotaService, RotaService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<RabbitMQService>();
 #endregion
 
 #region AutoMapper
@@ -47,7 +50,7 @@ var mapperConfig = new MapperConfiguration(config =>
     config.CreateMap<CaminhaoModel, CaminhaoViewModel>().ReverseMap();
     config.CreateMap<StatusModel, StatusViewModel>().ReverseMap();
     config.CreateMap<UserModel, UserViewModel>().ReverseMap();
-    config.CreateMap<AuthModel,  AuthViewModel>().ReverseMap();
+    config.CreateMap<AuthModel, AuthViewModel>().ReverseMap();
     config.CreateMap<TokenUserModel, TokenUserViewModel>().ReverseMap();
     config.CreateMap<LoginViewModel, AuthModel>()
            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Usuario))
@@ -60,6 +63,7 @@ var mapperConfig = new MapperConfiguration(config =>
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 #endregion
+
 #region Autenticação
 builder.Services.AddAuthentication(options =>
 {
@@ -72,11 +76,53 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("f+ujXAKHk00L5jlMXo2XhAWawsOoihNP1OiAM25lLSO57+X7uBMQgwPju6yzyePi")),
-        ValidateIssuer = false, 
-        ValidateAudience = false  
+        ValidateIssuer = false,
+        ValidateAudience = false
     };
 });
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Minha API", Version = "v1" });
 
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+#endregion
+
+#region RabbitMQ
+builder.Services.AddSingleton<IConnectionFactory>(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    return new ConnectionFactory()
+    {
+        HostName = configuration["RabbitMQ:HostName"],
+        Port = int.Parse(configuration["RabbitMQ:Port"]),
+        UserName = configuration["RabbitMQ:UserName"],
+        Password = configuration["RabbitMQ:Password"]
+    };
+});
+builder.Services.AddScoped<RabbitMQService>();
 #endregion
 
 builder.Services.AddControllers();
@@ -86,7 +132,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure o pipeline de solicitação HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -95,7 +141,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication(); 
+app.UseAuthentication();
 app.UseAuthorization();
 
 using (var scope = app.Services.CreateScope())
@@ -113,9 +159,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-
 app.MapControllers();
 
 app.Run();
-
-
