@@ -251,3 +251,4 @@ C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI\obj
 C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI\bin\Debug\net8.0\TrashCollectionAPI.xml
 C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI\obj\Debug\net8.0\TrashCollectionAPI.xml
 C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Z\Documents\projetosFaculdade\TrashCollectionAPI\TrashCollectionAPI\bin\Debug\net8.0\RabbitMQ.Client.dll
