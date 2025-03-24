@@ -17,7 +17,7 @@ namespace TrashCollectionAPI.Data
             using var connection = _connectionFactory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.QueueDeclare(queueName, false, false, false, null);
+            channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
 
         public void SendMessage(string queueName, string message)
@@ -27,5 +27,6 @@ namespace TrashCollectionAPI.Data
 
             channel.BasicPublish("", queueName, null, Encoding.UTF8.GetBytes(message));
         }
+
     }
 }
